@@ -1,0 +1,91 @@
+.panel {
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    .generate_area {
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+        align-items: center;
+        .generate {
+            padding: 10px;
+            background-color: #1976d2;
+            font-weight: bold;
+            color: white;
+            border-radius: 4px;
+            width: fit-content;
+            &:hover {
+                cursor: pointer;
+                opacity: 0.9;
+            }
+            &__disable {
+                @extend .generate;
+                background-color: #939393;
+                color: white;
+                &:hover {
+                    cursor: auto;
+                    opacity: 1;
+                }
+            }
+        }
+        .label {
+            font-weight: bold;
+        }
+        .input {
+            padding: 10px;
+            font-size: 9px;
+            font-weight: bold;
+        }
+    }
+    .table__row {
+        color: black;
+        display: flex;
+        flex-direction: row;
+        .id {
+            flex: 3;
+            height: 100%;
+            color: black;
+            font-weight: bold;
+        }
+        .code {
+            flex: 7;
+            height: 100%;
+            color: black;
+            font-weight: bold;
+        }
+        .isUsed {
+            flex: 2;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+    .table__header {
+        color: black;
+        display: flex;
+        flex-direction: row;
+        .id {
+            flex: 3;
+            height: 100%;
+            color: black;
+            font-weight: bold;
+        }
+        .code {
+            flex: 7;
+            height: 100%;
+            color: black;
+            font-weight: bold;
+        }
+        .isUsed {
+            flex: 2;
+            height: 100%;
+            color: black;
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+        }
+    }
+}

@@ -1,14 +1,25 @@
 import AjaxHelper from "../../services";
 
-import { Admin, Resource, ListGuesser } from "react-admin";
+import { Admin, Resource, ListGuesser, ShowGuesser, EditGuesser } from "react-admin";
 
-import PersonIcon from '@mui/icons-material/Person';
+import PersonIcon from "@mui/icons-material/Person";
+import FactCheckIcon from "@mui/icons-material/FactCheck";
+import ConfirmationNumberIcon from "@mui/icons-material/ConfirmationNumber";
 
 import ProductList from "../products";
 import { ProductEdit } from "../products/edit";
 import { ProductCreate } from "../products/create";
+import {ProductShow} from "../products/show";
 
-import {UserList} from "../users"
+import { UserList } from "../users";
+import { UserShow } from "../users/show";
+
+import { OrderList } from "../orders";
+import { OrderShow } from "../orders/show";
+import { OrderEdit } from "../orders/edit";
+
+import { CouponList } from "../coupons";
+import { CouponCreate } from "../coupons/create";
 
 import authoProvider from "../../providers/auth";
 
@@ -24,23 +35,31 @@ export default function Exam() {
             >
                 <Resource
                     name="products"
+                    show={ProductShow}
                     list={ProductList}
                     edit={ProductEdit}
                     create={ProductCreate}
                 />
                 <Resource
+                    name="orders"
+                    list={OrderList}
+                    show={OrderShow}
+                    edit={OrderEdit}
+                    icon={FactCheckIcon}
+                />
+                <Resource
                     name="users"
                     list={UserList}
+                    show={UserShow}
                     icon={PersonIcon}
                     // edit={ProductEdit}
                     // create={ProductCreate}
                 />
                 <Resource
-                    name="orders"
-                    list={ListGuesser}
-                    icon={PersonIcon}
-                    // edit={ProductEdit}
-                    // create={ProductCreate}
+                    name="coupons"
+                    list={CouponList}
+                    create={CouponCreate}
+                    icon={ConfirmationNumberIcon}
                 />
             </Admin>
         </>

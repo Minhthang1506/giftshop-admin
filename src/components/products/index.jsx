@@ -1,23 +1,27 @@
-import { List, Datagrid, BooleanField, EditButton } from 'react-admin';
+import { TextInput, Datagrid, DateField, List, NumberField, TextField, ShowButton ,EditButton} from 'react-admin';
 
+import {ThumbnailField, TraitsField, DetailField, PriceField} from './fields2'
 
+const ProductShowButton = () => <ShowButton label="Show" />;
+const ProductEditButton = () => <EditButton label="Edit" />;
 
-import {TraitsField, TextField, NumberField, DetailField, ThumbnailField} from './fields'
+const ProductFilters = [
+    <TextInput label="Search" source="q" />,
+];
 
 export const ProductList = () => (
-    <List>
-        <Datagrid rowClick="edit">
-            <TextField source="id"/>
+    <List filters={ProductFilters} sort={{field: 'price', order: "DESC"}}>
+        <Datagrid bulkActionButtons={false} >
             <TextField source="sku" />
             <TextField source="name" />
             <TextField source="description" />
             <NumberField source="stock" />
-            <NumberField source="price" />
-            <TraitsField source="traits" />
+            <PriceField source="price" />
             <DetailField source="detail" />
+            <TraitsField source="traits" />
             <ThumbnailField source="imageUrl" />
-            <BooleanField source="isActive" />
-            <EditButton ></EditButton>
+            <ProductShowButton></ProductShowButton>
+            <ProductEditButton></ProductEditButton>
         </Datagrid>
     </List>
 );
