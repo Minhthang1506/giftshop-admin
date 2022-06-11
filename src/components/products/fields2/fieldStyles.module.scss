@@ -1,0 +1,21 @@
+.thumbnail {
+    width: 100px;
+    height: 100px;
+    background-size: cover;
+    background-position: center;
+    object-fit: cover;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+.detail__field {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 0 20px;
+}
+.text {
+    font-size: 9px;
+    color: black;
+    font-family: "Roboto";
+}

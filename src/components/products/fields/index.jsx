@@ -97,7 +97,7 @@ export const DetailPropsInput = (key, source) => {
 export const TextInput = (props) => {
     const { source, disabled } = props;
 
-    const inputText = useController({ name: source});
+    const inputText = useController({ name: source });
 
     return (
         <div className={styles.field}>
@@ -116,12 +116,11 @@ export const TextInput = (props) => {
 export const CreateTextInput = (props) => {
     const { source } = props;
     const dispatch = useDispatch();
-    const value = useSelector(state => state.products.newSkU)
+    const value = useSelector((state) => state.products.newSkU);
 
     const handleChange = (e) => {
-        dispatch(changeNewSku(e.target.value))
-    }
-
+        dispatch(changeNewSku(e.target.value));
+    };
 
     return (
         <div className={styles.field}>
@@ -130,7 +129,7 @@ export const CreateTextInput = (props) => {
                 className={styles.input__text}
                 type="text"
                 onChange={handleChange}
-                value = {value}
+                value={value}
                 placeholder={source}
             />
         </div>
@@ -199,7 +198,7 @@ export const MyBooleanInput = ({ source }) => {
 export const MyImageInput = ({ source }) => {
     const record = useRecordContext();
     const input = useController({ name: source });
-    
+
     const dispatch = useDispatch();
 
     const [file, setFile] = useState();
@@ -229,7 +228,7 @@ export const MyImageInput = ({ source }) => {
     }, [file]);
     useEffect(() => {
         dispatch(changeImage({ imageUrl: responeUrl }));
-        input.field.onChange()
+        input.field.onChange();
     }, [responeUrl]);
 
     const handleSelectFile = (e) => {
@@ -238,9 +237,7 @@ export const MyImageInput = ({ source }) => {
 
     const handleRemove = (e) => setFile();
 
-    const handlePreventOpenFile = () => {
-
-    }
+    const handlePreventOpenFile = () => {};
 
     return (
         <div className={styles.field}>
@@ -273,11 +270,10 @@ export const MyImageInput = ({ source }) => {
 };
 
 export const MyCreateImageInput = ({ source }) => {
-
     const input = useController({ name: source });
 
-    const sku = useSelector(state => state.products.newSkU)
-    
+    const sku = useSelector((state) => state.products.newSkU);
+
     const dispatch = useDispatch();
 
     const [file, setFile] = useState();
@@ -307,7 +303,7 @@ export const MyCreateImageInput = ({ source }) => {
     }, [file]);
     useEffect(() => {
         dispatch(changeImage({ imageUrl: responeUrl }));
-        input.field.onChange()
+        input.field.onChange();
     }, [responeUrl]);
 
     const handleSelectFile = (e) => {
@@ -316,9 +312,7 @@ export const MyCreateImageInput = ({ source }) => {
 
     const handleRemove = (e) => setFile();
 
-    const handlePreventOpenFile = () => {
-
-    }
+    const handlePreventOpenFile = () => {};
 
     return (
         <div className={styles.field}>
@@ -327,9 +321,7 @@ export const MyCreateImageInput = ({ source }) => {
                 onClick={handlePreventOpenFile}
                 className={styles.input__image}
                 style={{
-                    backgroundImage: `url(${
-                        (file && URL.createObjectURL(file))
-                    }`,
+                    backgroundImage: `url(${file && URL.createObjectURL(file)}`,
                 }}
             >
                 <div className={styles.layout}></div>
@@ -360,9 +352,86 @@ export const MyImageInputString = ({ source }) => {
             <input
                 className={styles.input__text}
                 {...input.field}
-                value = {value}
+                value={value}
                 placeholder={source}
             />
+        </div>
+    );
+};
+
+export const MyImageField = ({ source }) => {
+    const record = useRecordContext();
+
+    const sku = record.sku;
+    const [curImageUrl, setCurImageUrl] = useState(record.imageUrl);
+
+    const [file, setFile] = useState();
+    const [disableClass, setDisableClass] = useState("");
+
+    const handleSelectFile = (e) => {
+        setFile(e.target.files?.[0]);
+    };
+
+    const handleRemove = (e) => setFile();
+    const handleUpdate = async (e) => {
+        setDisableClass("__disable");
+        const formData = new FormData();
+        formData.append("File", file);
+
+        const config = {
+            headers: {
+                "content-type": "multipart/form-data",
+            },
+        };
+
+        const result =
+            file &&
+            (await axios.post(
+                `${URL_DOMAIN_V1}/Images/upload/product/${sku}`,
+                formData,
+                config
+            ));
+        console.log(result);
+        setCurImageUrl(result?.data?.data);
+    };
+
+    useEffect(() => {
+        setDisableClass("");
+    }, [file]);
+
+    return (
+        <div className={styles.field}>
+            <div
+                className={styles.input__image}
+                style={{
+                    backgroundImage: `url(${
+                        (file && URL.createObjectURL(file)) || curImageUrl
+                    }`,
+                }}
+            >
+                <div className={styles.layout}></div>
+                <div className={styles.icon}>
+                    <EditIcon sx={{ fontSize: 24, color: "white" }}></EditIcon>
+                </div>
+                <input
+                    className={styles.img}
+                    type="file"
+                    onChange={handleSelectFile}
+                    accept="image/*"
+                />
+            </div>
+            <div
+                className={styles[`btn${disableClass}`]}
+                onClick={disableClass === "" ? handleUpdate : undefined}
+            >
+                Update image
+            </div>
+            <div
+                className={styles[`btn${disableClass}`]}
+                onClick={disableClass === "" ? handleRemove : undefined}
+            >
+                Remove image
+            </div>
         </div>
     );
 };

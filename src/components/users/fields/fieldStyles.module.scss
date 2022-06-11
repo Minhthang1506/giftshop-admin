@@ -4,10 +4,14 @@
     background-size: cover;
     background-position: center;
     object-fit: cover;
+    display:flex;
+    justify-content: center;
+    align-items: center;
 }
 .field {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     align-items: center;
     gap: 10px;
 }
@@ -92,23 +96,9 @@
         display: none;
     }
 }
-.btn {
+.remove {
     padding: 4px 16px;
     background-color: #1976d2;
-    border-radius: 4px;
+    border-radius:4px;
     color: white;
-    font-size: 9px;
-    font-family: "Roboto";
-    &:hover {
-        cursor: pointer;
-        opacity: 0.9;
-    }
-    &__disable {
-        @extend .btn;
-        background-color: #bebdbd;
-        &:hover {
-            cursor: auto;
-            opacity: 1;
-        }
-    }
 }
