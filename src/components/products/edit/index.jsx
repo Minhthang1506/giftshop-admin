@@ -72,11 +72,11 @@ import { RichTextInput, RichTextInputToolbar } from "ra-input-rich-text";
 import Divider from "@mui/material/Divider";
 
 const choices = [
-    { id: 1, value: "gift" },
-    { id: 2, value: "friend" },
-    { id: 3, value: "demo" },
-    { id: 4, value: "family" },
-    { id: 5, value: "new" },
+    { id: 1, value: "Gia đình" },
+    { id: 2, value: "Bạn bè" },
+    { id: 3, value: "Đề xuất" },
+    { id: 4, value: "Tình yêu" },
+    { id: 5, value: "Lưu niệm" },
 ];
 
 export const MyToolbar = () => (

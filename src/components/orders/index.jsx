@@ -34,7 +34,7 @@ export const OrderList = () => (
                     <ChipField source="productSku" />
                 </SingleFieldList>
             </ArrayField> */}
-            <DateField source="promotionPercent" />
+            <NumberField source="promotionPercent" />
             <PriceField source="totalPrice" />
             <PriceField source="totalPaid" />
             <BooleanField source="isPaid" />

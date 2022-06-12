@@ -34,6 +34,15 @@ const authProvider = {
         // Required for the authentication to work
         return Promise.resolve();
     },
+    checkError:  (error) => {
+        const status = error.status;
+        if (status === 401 || status === 403) {
+            localStorage.removeItem('username');
+            return Promise.reject();
+        }
+        // other error code (404, 500, etc): no need to log out
+        return Promise.resolve();
+    },
     // ...
 };
 

@@ -366,7 +366,7 @@ export const MyImageField = ({ source }) => {
     const [curImageUrl, setCurImageUrl] = useState(record.imageUrl);
 
     const [file, setFile] = useState();
-    const [disableClass, setDisableClass] = useState("");
+    const [disableClass, setDisableClass] = useState("__disable");
 
     const handleSelectFile = (e) => {
         setFile(e.target.files?.[0]);

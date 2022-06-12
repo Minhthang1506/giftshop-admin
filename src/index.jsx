@@ -11,6 +11,17 @@ import { createRoot } from "react-dom/client";
 //redux
 const store = configureStore({
     reducer: rootReducer,
+    middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        // Ignore these action types
+        ignoredActions: ['productSlice/changeImageFile'],
+        // Ignore these field paths in all actions
+        ignoredActionPaths: ['meta.arg', 'payload.timestamp'],
+        // Ignore these paths in the state
+        ignoredPaths: ['items.dates'],
+      },
+    }),
 });
 //render
 const container = document.getElementById("app");

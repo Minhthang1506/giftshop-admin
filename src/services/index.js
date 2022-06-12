@@ -1,3 +1,4 @@
+import { PanoramaVerticalSelect } from "@mui/icons-material";
 import axios from "axios";
 
 import { URL_DOMAIN_V1 } from "./API";
@@ -121,7 +122,7 @@ AjaxHelper.getList = async (url, params, options) => {
     }
     //--------------------------------
 
-    //coupon
+    //products
     if (url === "products") {
         var query = {
             PageIndex: params.pagination.page,
@@ -129,48 +130,56 @@ AjaxHelper.getList = async (url, params, options) => {
             Search: params.filter?.q,
             SortBy: params.sort?.field,
             IsDesc: params.sort?.order === "DESC",
+            ActiveStatus: params.filter.isActive ? params.filter.isActive.toLowerCase() : "all",
         };
-
+        
         var parsedQuery = parseQueryToUrl(query);
+        console.log(parsedQuery)
 
-        var configedUrl = `${URL_DOMAIN_V1}/${url}`;
+        var configedUrl = `${URL_DOMAIN_V1}/${url}/managed`;
         var queriedUrl = `${configedUrl}?${parsedQuery}`;
+
+        var token = localStorage.getItem("auth");
+        var configedOptions = {
+            headers: {
+                Authorization: `Bearer ${JSON.parse(token)}`,
+            },
+        };
 
         var result = await axios.get(queriedUrl, configedOptions);
 
         var data = result?.data?.data?.items.map((item) => ({
-            id: item.sku,
             ...item,
+            id: item.sku,
         }));
         var total = result?.data?.data?.allTotalCount;
 
         return { total, data };
     }
     //--------------------------------
-    // var configedUrl
-    // console.log(configedUrl, configedOptions);
-    // var result = await axios.get(configedUrl, configedOptions);
 
-    // result = configResult(url, result, "get list");
+    if (url === "orders/report") {
+        var query = params.query
+        
+        var parsedQuery = parseQueryToUrl(query);
+        
+        var configedUrl = `${URL_DOMAIN_V1}/${url}`;
+        var queriedUrl = `${configedUrl}?${parsedQuery}`;
 
-    // return result;
-    // return {
-    //     data: [
-    //         {
-    //             id: "test03",
-    //             description: "A sweet valentine gift for girlfriend",
-    //             detail: { color: "red", material: "wood" },
-    //             imageUrl: "http://loremflickr.com/640/480/city",
-    //             isActive: true,
-    //             name: "gift demo 03",
-    //             price: 50.25,
-    //             sku: "test03",
-    //             stock: 54,
-    //             traits: ["gift", "demo", "valentine", "girl"],
-    //         },
-    //     ],
-    //     total: 1,
-    // };
+        var token = localStorage.getItem("auth");
+        var configedOptions = {
+            headers: {
+                Authorization: `Bearer ${JSON.parse(token)}`,
+            },
+        };
+
+        var result = await axios.get(queriedUrl, configedOptions);
+
+        var data = result?.data?.data
+
+        return data;
+    }
+    //--------------------------------
 };
 AjaxHelper.getOne = async (url, payload) => {
     //coupons
@@ -237,6 +246,7 @@ AjaxHelper.getOne = async (url, payload) => {
 
     //users
     if (url === "products") {
+
         var id = payload.id;
 
         var configedUrl = `${URL_DOMAIN_V1}/${url}/sku/${id}`;
@@ -249,44 +259,8 @@ AjaxHelper.getOne = async (url, payload) => {
         return { data };
     }
     //---------------------------------------------
-
-    // var configedUrl = `${configUrl(url)}/sku/${params.id}`;
-    // if (url === "orders") configedUrl = `${configUrl(url)}/${params.id}`;
-
-    // const configedOptions = configOptions(url);
-
-    // var result = await axios.get(configedUrl, configedOptions);
-
-    // result = configResult(url, result, "get one");
-    // console.log(result);
-
-    // return result;
-    // return {
-    //     data: {
-    //         id: "test03",
-    //         description: "A sweet valentine gift for girlfriend",
-    //         detail: { color: "red", material: "wood" },
-    //         imageUrl: "http://loremflickr.com/640/480/city",
-    //         isActive: true,
-    //         name: "gift demo 03",
-    //         price: 50.25,
-    //         sku: "test03",
-    //         stock: 54,
-    //         traits: ["gift", "demo", "valentine", "girl"],
-    //     },
-    // };
 };
 AjaxHelper.update = async function (url, payload) {
-    // var { id, ...restData } = payload?.data;
-
-    // const configedUrl = `${configUrl(url)}/${restData?.sku}`;
-
-    // await axios.put(configedUrl, restData);
-
-    // const result = await AjaxHelper.getOne(url, payload?.data);
-
-    // return { data: payload?.data };
-    // //return result
     //orders
     if (url === "orders") {
         var id = payload.id;
@@ -319,7 +293,6 @@ AjaxHelper.update = async function (url, payload) {
     //prodccts
     if (url === "products") {
         var { id, ...data } = payload;
-        console.log(payload);
 
         var configedUrl = `${URL_DOMAIN_V1}/${url}/${id}`;
 
@@ -330,10 +303,9 @@ AjaxHelper.update = async function (url, payload) {
             },
         };
 
-        var result = await axios.put(configedUrl, data, configedOptions);
+        var result = await axios.put(configedUrl, data.data, configedOptions);
 
         data.id = id;
-        console.log(result);
 
         return { data };
     }
@@ -362,27 +334,25 @@ AjaxHelper.create = async function (url, payload) {
         return { data: { id: "something", ...payload.data } };
     }
     //--------------------------------
-    const configedUrl = `${configUrl(url)}`;
 
-    var result = await axios.post(configedUrl, payload?.data);
+    //coupon
+    if (url === "products") {
+        const configedUrl = `${URL_DOMAIN_V1}/${url}`;
 
-    console.log(result);
+        var params = payload.data;
 
-    return { data: { id: payload?.sku, ...payload?.data } };
-    return {
-        data: {
-            id: "test03",
-            description: "A sweet valentine gift for girlfriend",
-            detail: { color: "red", material: "wood" },
-            imageUrl: "http://loremflickr.com/640/480/city",
-            isActive: true,
-            name: "gift demo 03",
-            price: 50.25,
-            sku: "test03",
-            stock: 54,
-            traits: ["gift", "demo", "valentine", "girl"],
-        },
-    };
+        var token = localStorage.getItem("auth");
+        var configedOptions = {
+            headers: {
+                Authorization: `Bearer ${JSON.parse(token)}`,
+            },
+        };
+
+        var result = await axios.post(configedUrl, params, configedOptions);
+
+        return { data: { id: params.sku, ...params } };
+    }
+    //--------------------------------
 };
 
 AjaxHelper.deleteMany = async (url, params) => {

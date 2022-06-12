@@ -23,12 +23,15 @@ import { CouponCreate } from "../coupons/create";
 
 import authoProvider from "../../providers/auth";
 
+import Dashboard from "../dashboard"
+
 //import jsonServerProvider from "ra-data-json-server
 
 export default function Exam() {
     return (
         <>
             <Admin
+                dashboard={Dashboard}
                 dataProvider={AjaxHelper}
                 authProvider={authoProvider}
                 requireAuth

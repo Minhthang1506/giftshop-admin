@@ -36,7 +36,6 @@ const statusStragety = [
         curStatus: "Canceled",
         nextStatus: [
             { id: 1, status: "Canceled" },
-            { id: 2, status: "Success" },
         ],
     },
 ];

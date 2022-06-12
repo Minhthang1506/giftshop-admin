@@ -13,7 +13,7 @@ const UserDeleteButton = () => <DeleteButton label="Delete" />;
 
 export const UserList = () => (
     <List filters={userFilters} sort={{field: 'createdAt', order: "DESC"}}>
-        <Datagrid>
+        <Datagrid bulkActionButtons={false}>
             <TextField source="id" />
             <DateField source="firstName" />
             <TextField source="lastName" />

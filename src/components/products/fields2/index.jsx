@@ -3,6 +3,7 @@ import { useRecordContext } from "react-admin";
 import styles from "./fieldStyles.module.scss";
 
 import { CapitalizeFirstLetter } from "../../../utils/capitalizeString";
+import {StrimString} from "../../../utils/strimString"
 
 export const ThumbnailField = ({ source }) => {
     const record = useRecordContext();
@@ -22,6 +23,11 @@ export const TraitsField = ({ source }) => {
     return (
         <div className = {styles.text}>{record && CapitalizeFirstLetter(record[source]?.join(", "))}</div>
     );
+};
+
+export const DiscriptionField = ({ source, words = 20 }) => {
+    const record = useRecordContext();
+    return <div dangerouslySetInnerHTML={{__html: record && StrimString(record[source], words)}}></div>;
 };
 
 export const DetailField = (props) => {

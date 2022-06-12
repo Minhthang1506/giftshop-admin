@@ -32,7 +32,7 @@ export const OrderShow = () => (
                 </Datagrid>
             </ArrayField>
             <Divider></Divider>
-            <DateField source="promotionPercent" />
+            <NumberField source="promotionPercent" />
             <Divider></Divider>
             <PriceField source="totalPrice" />
             <Divider></Divider>

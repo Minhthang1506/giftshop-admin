@@ -1,0 +1,28 @@
+.card {
+    padding: 20px;
+    border-radius: 12px;
+    min-width: 160px;
+    height: 160px;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    .title {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        color: white;
+        font-weight: bold;
+        font-size:12px;
+        font-family: "Roboto";
+    }
+    .data {
+        color: white;
+        font-weight: bold;
+        font-size: 20px;
+        font-family: "Roboto";
+        position: relative;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+}

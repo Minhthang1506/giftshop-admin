@@ -6,7 +6,8 @@ const initialState = {
         isValid: true,
         message: "",
     },
-    newSkU: ""
+    newSkU: "",
+    imageFile: {},
 };
 
 const productSlice = createSlice({
@@ -21,9 +22,13 @@ const productSlice = createSlice({
         },
         changeNewSku(state, action) {
             state.newSkU = action.payload;
-        }
+        },
+        changeImageFile(state, action) {
+            state.imageFile = action.payload.imageFile;
+        },
     },
 });
 
-export const { changeImage, changeInvalidate,changeNewSku } = productSlice.actions;
+export const { changeImage, changeInvalidate, changeNewSku, changeImageFile } =
+    productSlice.actions;
 export default productSlice.reducer;

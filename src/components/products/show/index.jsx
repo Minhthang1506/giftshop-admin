@@ -14,6 +14,7 @@ import {
     DetailField,
     TraitsField,
     PriceField,
+    DiscriptionField
 } from "../fields2";
 import { MyImageField } from "../fields";
 
@@ -26,9 +27,11 @@ export const ProductShow = () => (
             <Divider></Divider>
             <MyImageField source="image" />
             <Divider></Divider>
+            <BooleanField source="isActive"></BooleanField>
+            <Divider></Divider>
             <TextField source="name" />
             <Divider></Divider>
-            <TextField source="description" />
+            <DiscriptionField words={1000} source="description" />
             <Divider></Divider>
             <NumberField source="stock" />
             <Divider></Divider>
