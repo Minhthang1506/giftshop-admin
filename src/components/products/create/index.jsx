@@ -208,7 +208,7 @@ import { URL_DOMAIN_V1 } from "../../../services/API";
 const choices = [
     { id: 1, value: "Gia đình" },
     { id: 2, value: "Bạn bè" },
-    { id: 3, value: "Đề xuất" },
+    { id: 3, value: "Sinh nhật" },
     { id: 4, value: "Tình yêu" },
     { id: 5, value: "Lưu niệm" },
 ];
