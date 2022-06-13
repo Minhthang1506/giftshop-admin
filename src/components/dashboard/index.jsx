@@ -45,12 +45,14 @@ const Dashboard = () => {
     useEffect(() => {
         var newRevenue = 0;
         for (var order of data) {
+            if (order.status === 'Success')
             newRevenue += order.totalPaid;
         }
 
         var newSold = 0;
         for (var order of data) {
             for (var item of order.items) {
+                if (order.status === 'Success')
                 newSold += item.quantity;
             }
         }

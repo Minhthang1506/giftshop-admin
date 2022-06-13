@@ -62,48 +62,48 @@ export const data2 = {
 
 export function App({ data }) {
 
-    const simpleData = data?.map(order => ({totalPaid: order.totalPaid,createdAt: order?.createdAt?.toString().split("T")?.[0]}))
+    const simpleData = data?.map(order => ({totalPaid: order.totalPaid,createdAt: order?.createdAt?.toString().split("T")?.[0], status: order.status})).filter(item => item.status === "Success")
     
-    simpleData.push({totalPaid: 10000, createdAt:"2021-5-12"});
-    simpleData.push({totalPaid: 120100, createdAt:"2022-5-12"});
-    simpleData.push({totalPaid: 12300, createdAt:"2021-6-9"});
-    simpleData.push({totalPaid: 21000, createdAt: "2021-4-12"});
-    simpleData.push({totalPaid: 10000, createdAt:"2021-5-12"});
-    simpleData.push({totalPaid: 120100, createdAt:"2022-5-12"});
-    simpleData.push({totalPaid: 12300, createdAt:"2021-6-9"});
-    simpleData.push({totalPaid: 21000, createdAt: "2021-4-12"});
-    simpleData.push({totalPaid: 10000, createdAt:"2021-5-12"});
-    simpleData.push({totalPaid: 120100, createdAt:"2022-5-12"});
-    simpleData.push({totalPaid: 12300, createdAt:"2021-6-9"});
-    simpleData.push({totalPaid: 21000, createdAt: "2021-4-12"});
-    simpleData.push({totalPaid: 10000, createdAt:"2021-5-12"});
-    simpleData.push({totalPaid: 120100, createdAt:"2022-5-12"});
-    simpleData.push({totalPaid: 12300, createdAt:"2021-6-9"});
-    simpleData.push({totalPaid: 21000, createdAt: "2021-4-12"});
-    simpleData.push({totalPaid: 10000, createdAt:"2021-5-12"});
-    simpleData.push({totalPaid: 120100, createdAt:"2022-5-12"});
-    simpleData.push({totalPaid: 12300, createdAt:"2021-6-9"});
-    simpleData.push({totalPaid: 21000, createdAt: "2021-4-12"});
-    simpleData.push({totalPaid: 10000, createdAt:"2021-5-12"});
-    simpleData.push({totalPaid: 120100, createdAt:"2022-5-12"});
-    simpleData.push({totalPaid: 12300, createdAt:"2021-6-9"});
-    simpleData.push({totalPaid: 21000, createdAt: "2021-4-12"});
-    simpleData.push({totalPaid: 10000, createdAt:"2021-5-12"});
-    simpleData.push({totalPaid: 120100, createdAt:"2022-5-12"});
-    simpleData.push({totalPaid: 12300, createdAt:"2021-6-9"});
-    simpleData.push({totalPaid: 21000, createdAt: "2021-4-12"});
-    simpleData.push({totalPaid: 10000, createdAt:"2021-5-12"});
-    simpleData.push({totalPaid: 120100, createdAt:"2022-5-12"});
-    simpleData.push({totalPaid: 12300, createdAt:"2021-6-9"});
-    simpleData.push({totalPaid: 21000, createdAt: "2021-4-12"});
-    simpleData.push({totalPaid: 10000, createdAt:"2021-5-12"});
-    simpleData.push({totalPaid: 120100, createdAt:"2022-5-12"});
-    simpleData.push({totalPaid: 12300, createdAt:"2021-6-9"});
-    simpleData.push({totalPaid: 21000, createdAt: "2021-4-12"});
-    simpleData.push({totalPaid: 10000, createdAt:"2021-5-12"});
-    simpleData.push({totalPaid: 120100, createdAt:"2022-5-12"});
-    simpleData.push({totalPaid: 12300, createdAt:"2021-6-9"});
-    simpleData.push({totalPaid: 21000, createdAt: "2021-4-12"});
+    // simpleData.push({totalPaid: 10000, createdAt:"2021-5-12"});
+    // simpleData.push({totalPaid: 120100, createdAt:"2022-5-12"});
+    // simpleData.push({totalPaid: 12300, createdAt:"2021-6-9"});
+    // simpleData.push({totalPaid: 21000, createdAt: "2021-4-12"});
+    // simpleData.push({totalPaid: 10000, createdAt:"2021-5-12"});
+    // simpleData.push({totalPaid: 120100, createdAt:"2022-5-12"});
+    // simpleData.push({totalPaid: 12300, createdAt:"2021-6-9"});
+    // simpleData.push({totalPaid: 21000, createdAt: "2021-4-12"});
+    // simpleData.push({totalPaid: 10000, createdAt:"2021-5-12"});
+    // simpleData.push({totalPaid: 120100, createdAt:"2022-5-12"});
+    // simpleData.push({totalPaid: 12300, createdAt:"2021-6-9"});
+    // simpleData.push({totalPaid: 21000, createdAt: "2021-4-12"});
+    // simpleData.push({totalPaid: 10000, createdAt:"2021-5-12"});
+    // simpleData.push({totalPaid: 120100, createdAt:"2022-5-12"});
+    // simpleData.push({totalPaid: 12300, createdAt:"2021-6-9"});
+    // simpleData.push({totalPaid: 21000, createdAt: "2021-4-12"});
+    // simpleData.push({totalPaid: 10000, createdAt:"2021-5-12"});
+    // simpleData.push({totalPaid: 120100, createdAt:"2022-5-12"});
+    // simpleData.push({totalPaid: 12300, createdAt:"2021-6-9"});
+    // simpleData.push({totalPaid: 21000, createdAt: "2021-4-12"});
+    // simpleData.push({totalPaid: 10000, createdAt:"2021-5-12"});
+    // simpleData.push({totalPaid: 120100, createdAt:"2022-5-12"});
+    // simpleData.push({totalPaid: 12300, createdAt:"2021-6-9"});
+    // simpleData.push({totalPaid: 21000, createdAt: "2021-4-12"});
+    // simpleData.push({totalPaid: 10000, createdAt:"2021-5-12"});
+    // simpleData.push({totalPaid: 120100, createdAt:"2022-5-12"});
+    // simpleData.push({totalPaid: 12300, createdAt:"2021-6-9"});
+    // simpleData.push({totalPaid: 21000, createdAt: "2021-4-12"});
+    // simpleData.push({totalPaid: 10000, createdAt:"2021-5-12"});
+    // simpleData.push({totalPaid: 120100, createdAt:"2022-5-12"});
+    // simpleData.push({totalPaid: 12300, createdAt:"2021-6-9"});
+    // simpleData.push({totalPaid: 21000, createdAt: "2021-4-12"});
+    // simpleData.push({totalPaid: 10000, createdAt:"2021-5-12"});
+    // simpleData.push({totalPaid: 120100, createdAt:"2022-5-12"});
+    // simpleData.push({totalPaid: 12300, createdAt:"2021-6-9"});
+    // simpleData.push({totalPaid: 21000, createdAt: "2021-4-12"});
+    // simpleData.push({totalPaid: 10000, createdAt:"2021-5-12"});
+    // simpleData.push({totalPaid: 120100, createdAt:"2022-5-12"});
+    // simpleData.push({totalPaid: 12300, createdAt:"2021-6-9"});
+    // simpleData.push({totalPaid: 21000, createdAt: "2021-4-12"});
 
     simpleData?.sort((a,b) => {
         return a?.createdAt?.split('-').join("").localeCompare(b.createdAt.split('-').join(""))
