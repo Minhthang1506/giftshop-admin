@@ -6,8 +6,10 @@ const authProvider = {
 
         try {
             const result = await axios.post(`${URL_DOMAIN_V1}/Auths/signin`, {
-                email : "gaughegomth01@gmail.com",
-                password: "123456",
+                // email : "gaughegomth01@gmail.com",
+                // password: "123456",
+                email : username,
+                password : password
             });
 
             const config = {
